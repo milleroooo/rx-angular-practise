@@ -1,0 +1,27 @@
+.cats-list {
+  &__title {
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 24px;
+
+    &__table {
+      display: flex;
+      gap: 1rem;
+    }
+  }
+
+  &__form {
+    display: flex;
+    gap: 1rem;
+
+    &__label {
+      margin-right: 1rem;
+    }
+  }
+}

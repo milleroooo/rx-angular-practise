@@ -1,0 +1,70 @@
+<div class="beverages-container">
+  <h2>{{ !isEditMode ? 'Dodaj napój' : 'Edytuj napój' }}</h2>
+  <div class="beverages-container__form">
+    <div class="beverages-container__form__items">
+      <label for="name">Nazwa:</label>
+      <input
+        type="text"
+        id="name"
+        [(ngModel)]="beverage.name"
+        placeholder="Wpisz nazwę napoju"
+      />
+
+      <label for="type">Typ:</label>
+      <input
+        type="text"
+        id="type"
+        [(ngModel)]="beverage.type"
+        placeholder="Wpisz typ napoju"
+      />
+
+      <label for="volumeInLiters">Ilość (litry):</label>
+      <select id="volumeInLiters" [(ngModel)]="beverage.volumeInLiters">
+        <option [value]="0.33">0.33 l</option>
+        <option [value]="0.5">0.5 l</option>
+        <option [value]="1">1 l</option>
+        <option [value]="1.5">1.5 l</option>
+      </select>
+
+      <label for="isCarbonated">Gazowany:</label>
+      <select id="isCarbonated" [(ngModel)]="beverage.isCarbonated">
+        <option [value]="true">Tak</option>
+        <option [value]="false">Nie</option>
+      </select>
+
+      <button (click)="onSave()">
+        {{ !isEditMode ? 'Dodaj napój' : 'Edytuj napój' }}
+      </button>
+    </div>
+  </div>
+  <h2>Tabela</h2>
+  <table class="beverages-container__table">
+    <thead>
+      <tr>
+        <th>Nazwa</th>
+        <th>Typ</th>
+        <th>Ilość</th>
+        <th>Gazowany</th>
+        <th>Akcje</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let beverage of beverages$ | async">
+        <td>{{ beverage.name }}</td>
+        <td>{{ beverage.type }}</td>
+        <td>{{ beverage.volumeInLiters }} l</td>
+        <td>{{ beverage.isCarbonated ? 'Tak' : 'Nie' }}</td>
+        <td>
+          <div class="actions">
+            <button class="details" (click)="onSelectBeverage(beverage)">
+              Szczegóły
+            </button>
+            <button class="delete" (click)="onDeleteBeverage(beverage)">
+              Usuń
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

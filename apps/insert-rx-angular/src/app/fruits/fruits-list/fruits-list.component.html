@@ -1,0 +1,41 @@
+<h3>Fruits:</h3>
+<div class="fruits-list" *ngFor="let fruit of fruits$ | async">
+  <span>{{ fruit.name }}</span>
+  <span>{{ fruit.color }}</span>
+  <span>{{ fruit.taste }}</span>
+
+  <button (click)="changeToUpdateFruit(fruit)">Edit</button>
+  <button (click)="deleteFruit(fruit.id)">Delete</button>
+</div>
+
+<button class="top-margin" (click)="changeToAddFruit()">Change to Add</button>
+
+<h3>{{ isEdit ? 'Update Fruit' : 'Add Fruit' }}</h3>
+<form class="fruit-form" [formGroup]="fruitForm" (ngSubmit)="onSubmit()">
+  <label for="name">Name:</label>
+  <input id="name" formControlName="name" required />
+
+  <label for="color">Color:</label>
+  <input id="color" formControlName="color" required />
+
+  <label for="taste">Taste:</label>
+  <input id="taste" formControlName="taste" required />
+
+  <button class="top-margin" type="submit" [disabled]="fruitForm.invalid">Submit</button>
+</form>
+
+<h3>Find Fruit by ID</h3>
+<input type="text" [(ngModel)]="selectedId" placeholder="Enter fruit ID" />
+<button class="left-margin-to-button" (click)="findFruitById()">Find</button>
+
+<div *ngIf="fruit$ | async as fruit">
+  <div class="find-fruit" *ngIf="fruit.id !== ''; else noFound">
+    <h3>Fruit:</h3>
+    <span>{{ fruit.name }}</span>
+    <span>{{ fruit.color }}</span>
+    <span>{{ fruit.taste }}</span>
+  </div>
+  <ng-template #noFound>
+    <h3 class="top-margin">Fruit not found</h3>
+  </ng-template>
+</div>

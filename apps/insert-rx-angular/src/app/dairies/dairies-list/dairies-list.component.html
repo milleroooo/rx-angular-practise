@@ -1,0 +1,6 @@
+<span>Dairies</span>
+<div style="display: flex; gap: 1rem" *ngFor="let dairy of dairies$ | async">
+  <span>{{dairy.name}}</span>
+  <span>{{dairy.type}}</span>
+  <span>{{dairy.fatContent}}</span>
+</div>

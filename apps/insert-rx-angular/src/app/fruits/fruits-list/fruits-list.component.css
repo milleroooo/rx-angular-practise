@@ -1,0 +1,27 @@
+.fruits-list {
+  display: flex;
+  gap: 1rem;
+}
+
+.top-margin {
+  margin-top: 16px;
+}
+
+.left-margin-to-button {
+  margin-left: 8px;
+}
+
+.fruit-form {
+  flex-direction: column;
+  display: flex;
+  width: 25%;
+}
+
+.find-fruit {
+  flex-direction: column;
+  display: flex;
+}
+
+.find-fruit p {
+  margin: 0;
+}

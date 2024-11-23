@@ -1,0 +1,43 @@
+<div class="cats-list__title">{{ title.list }}</div>
+<div class="cats-list__list">
+  <div class="cats-list__list__table" *ngFor="let cat of cats$ | async">
+    <button (click)="onDeleteClick(cat.id)" [disabled]="isEdit">
+      {{ button.delete }}
+    </button>
+    <button (click)="onUpdateClick(cat)" [disabled]="isEdit">
+      {{ button.update }}
+    </button>
+    <span>{{ cat.name }}</span>
+    <span>{{ cat.age }}</span>
+    <span>{{ cat.breed }}</span>
+  </div>
+</div>
+<div>
+  <div class="cats-list__title">
+    {{ isEdit ? title.update : title.add }}
+  </div>
+
+  <form
+    class="cats-list__form"
+    [formGroup]="catForm"
+    (ngSubmit)="onSubmitClick()"
+  >
+    <div>
+      <label class="cats-list__form__label">{{ formLabel.name }}</label>
+      <input id="name" formControlName="name" type="text" />
+    </div>
+
+    <div>
+      <label class="cats-list__form__label">{{ formLabel.age }}</label>
+      <input id="age" formControlName="age" type="number" />
+    </div>
+
+    <div>
+      <label class="cats-list__form__label">{{ formLabel.breed }}</label>
+      <input id="name" formControlName="breed" type="text" />
+    </div>
+    <button type="submit" [disabled]="catForm.invalid">
+      {{ button.submit }}
+    </button>
+  </form>
+</div>
